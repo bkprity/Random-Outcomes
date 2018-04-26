@@ -1,2 +1,2 @@
-# Randomized Outcomes
+# Random Outcomes
 WIP mobile app
