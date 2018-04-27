@@ -2,9 +2,9 @@ import React from 'react'
 import { Dimensions, StyleSheet, Animated, Text, Image } from 'react-native'
 
 import Container from '../Container'
+import { coins } from '../../images'
 
-const graphic = require('../../assets/images/coins.png')
-const dim = Math.floor(Dimensions.get('window').width * 0.65)
+const { width } = Dimensions.get('window')
 
 export default function Coin(props) {
   const component = new React.Component()
@@ -51,8 +51,8 @@ export default function Coin(props) {
 
   component.render = () => (
     <Container {...containerProps} navigation={props.navigation}>
-      <Animated.View style={[styles.wrapper, {transform: [{rotateY}]}]}>
-        <Image style={[styles.coin, {left: -Math.abs(dim * component.state.side)}]} source={graphic} />
+      <Animated.View style={{transform: [{rotateY}]}}>
+        <Image style={styles.coin} source={coins[component.state.side]} />
       </Animated.View>
     </Container>
   )
@@ -61,21 +61,13 @@ export default function Coin(props) {
 }
 
 const styles = new StyleSheet.create({
-  wrapper: {
-    position: 'relative',
-    backgroundColor: 'transparent',
-    width: dim,
-    height: dim,
+  coin: {
+    width: width * 0.6,
+    height: width * 0.6,
     marginLeft: 'auto',
     marginRight: 'auto',
     transform: [
-      {rotateY: '45deg'}
+      {rotateY: '0deg'}
     ]
-  },
-  coin: {
-    position: 'absolute',
-    width: dim * 2,
-    height: dim,
-    left: 0,
   }
 })

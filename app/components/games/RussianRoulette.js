@@ -2,8 +2,8 @@ import React from 'react'
 import { Dimensions, Animated, Easing, StyleSheet, Text, Image } from 'react-native'
 
 import Container from '../Container'
+import { russianRoulette } from '../../images'
 
-const graphic = require('../../assets/images/russian-roulette.png')
 const { width } = Dimensions.get('window')
 const dim = width * 0.6
 
@@ -53,7 +53,7 @@ export default function RussianRoulette(props) {
   component.render = () => (
     <Container {...containerProps} navigation={props.navigation}>
       <Animated.View style={[styles.wrapper, {transform: [{rotate}]}]}>
-        <Image style={styles.cylinder} source={graphic} />
+        <Image style={styles.cylinder} source={russianRoulette} />
       </Animated.View>
 
       {component.state.stage 

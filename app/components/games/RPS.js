@@ -2,23 +2,23 @@ import React from 'react'
 import { Dimensions, StyleSheet, Animated, Image } from 'react-native'
 
 import Container from '../Container'
+import { rps } from '../../images'
 
-const graphic = require('../../assets/images/rps.png')
-const dim = Math.floor(Dimensions.get('window').width * 0.6)
+const { width } = Dimensions.get('window')
 
 export default function RPS(props) {
   const component = new React.Component()
 
   component.state = {
-    degrees: new Animated.Value(0),
-    left: 0
+    hand: 0,
+    degrees: new Animated.Value(0)
   }
 
   const containerProps = {
     title: 'Rock, Paper, Scissors',
     btnText: 'Play',
     btnPress: () => {
-      component.setState({left: 0})
+      component.setState({hand: 0})
 
       const animations = [
         Animated.timing(component.state.degrees, {toValue: 1, duration: 200}),
@@ -30,7 +30,7 @@ export default function RPS(props) {
       ]
 
       Animated.sequence(animations)
-        .start(() => component.setState({left: Math.floor(Math.random() * 3)}))
+        .start(() => component.setState({hand: Math.floor(Math.random() * 3)}))
     }
   }
 
@@ -41,8 +41,8 @@ export default function RPS(props) {
 
   component.render = () => (
     <Container {...containerProps} navigation={props.navigation}>
-      <Animated.View style={[styles.wrapper, {transform: [{rotate}]}]}>
-        <Image style={[styles.hand, {left: -Math.abs(dim * component.state.left)}]} source={graphic} />
+      <Animated.View style={{transform: [{rotate}]}}>
+        <Image style={styles.hand} source={rps[component.state.hand]} />
       </Animated.View>
     </Container>
   )
@@ -51,18 +51,10 @@ export default function RPS(props) {
 }
 
 const styles = new StyleSheet.create({
-  wrapper: {
-    position: 'relative',
-    backgroundColor: 'transparent',
-    width: dim,
-    height: dim,
+  hand: {
+    width: width * 0.6,
+    height: width * 0.6,
     marginLeft: 'auto',
     marginRight: 'auto',
-  },
-  hand: {
-    position: 'absolute',
-    width: dim * 3,
-    height: dim,
-    left: 0,
   }
 })

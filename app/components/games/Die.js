@@ -2,28 +2,26 @@ import React from 'react'
 import { StyleSheet, View, Dimensions, Image } from 'react-native'
 
 import Container from '../Container'
+import { die } from '../../images'
 
-const graphic = require('../../assets/images/die.png')
-const dim = Dimensions.get('window').width * 0.6
+const { width } = Dimensions.get('window')
 
 export default function Die(props) {
   const component = new React.Component()
 
   component.state = {
-    face: 5
+    face: die[5]
   }
 
   const containerProps = {
     title: 'Roll a die',
     btnText: 'Roll die',
-    btnPress: () => component.setState({face: Math.floor(Math.random() * 6)})
+    btnPress: () => component.setState({face: die[Math.floor(Math.random() * 6)]})
   }
 
   component.render = () => (
     <Container {...containerProps} navigation={props.navigation}>
-      <View style={styles.wrapper}>
-        <Image style={[styles.die, {left: -Math.abs(dim * component.state.face)}]} source={graphic} />
-      </View>
+        <Image style={styles.die} source={component.state.face} />
     </Container>
   )
 
@@ -31,18 +29,10 @@ export default function Die(props) {
 }
 
 const styles = new StyleSheet.create({
-  wrapper: {
-    position: 'relative',
-    backgroundColor: 'transparent',
-    width: dim,
-    height: dim,
-    overflow: 'hidden',
+  die: {
+    width: width * 0.6,
+    height: width * 0.6,
     marginLeft: 'auto',
     marginRight: 'auto',
-  },
-  die: {
-    position: 'absolute',
-    width: dim * 6,
-    height: dim
   }
 })

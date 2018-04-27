@@ -4,8 +4,8 @@ import { AdMobInterstitial } from 'react-native-admob'
 
 import Header from './Header'
 import BannerAd from './BannerAd'
+import { icons } from '../images'
 
-const icons = require('../assets/images/icons.png')
 const { width } = Dimensions.get('window')
 const adverts = require('../adverts.json')
 
@@ -30,12 +30,7 @@ export default function Home(props) {
             style={styles.item}
           >
           
-            <View style={styles.iconWrapper}>
-              <Image 
-                style={[styles.icon, {left: -Math.abs(iconDim * i)}]} 
-                source={icons}
-              />
-            </View>
+            <Image style={styles.icon} source={item.icon} />
 
             <Text style={styles.title} onPress={() => props.navigation.navigate(item.id)}>{item.title}</Text>
           
@@ -52,56 +47,64 @@ const items = [
   {
     title: 'Roll a die',
     id: 'Die',
+    icon: icons.die,
   },
   {
     title: 'Pick a card',
     id: 'Cards',
+    icon: icons.cards,
   },
   {
     title: 'Flip a coin',
     id: 'Coin',
+    icon: icons.coins,
   },
   {
     title: '8 ball',
     id: 'EightBall',
+    icon: icons.eightBall,
   },
   {
     title: 'Spin the bottle',
     id: 'Bottle',
+    icon: icons.bottle,
   },
   {
     title: 'Pick a straw',
     id: 'Straws',
+    icon: icons.straws,
   },
   {
     title: 'Rock, Paper, Scissors',
     id: 'RPS',
+    icon: icons.rps,
   },
   {
     title: 'Roulette',
     id: 'Roulette',
+    icon: icons.roulette,
   },
   {
     title: 'Spin the wheel',
     id: 'Wheel',
+    icon: icons.wheel,
   },
   {
     title: 'Random number',
     id: 'RandomNumber',
+    icon: icons.number,
   },
   {
     title: 'Three cups',
     id: 'ThreeCups',
+    icon: icons.cups,
   },
   {
     title: 'Russian roulette',
     id: 'RussianRoulette',
+    icon: icons.russianRoulette,
   },
 ]
-
-const itemDim = width * 0.29
-const iconDim = width * 0.15
-const margin = width * 0.025
 
 const styles = new StyleSheet.create({
   container: {
@@ -109,32 +112,23 @@ const styles = new StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    margin,
+    margin: width * 0.025,
   },
   item: {
     backgroundColor: 'white',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: margin,
-    width: itemDim,
-    height: itemDim,
-    marginBottom: margin,
-  },
-  iconWrapper: {
-    position: 'relative',
-    backgroundColor: 'transparent',
-    width: iconDim,
-    height: iconDim,
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    padding: width * 0.025,
+    width: width * 0.29,
+    height: width * 0.29,
+    marginBottom: width * 0.025,
   },
   icon: {
-    position: 'absolute',
-    width: iconDim * items.length,
-    height: iconDim,
-    top: 0,
-    left: 0,
+    width: width * 0.15,
+    height: width * 0.15,
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   title: {
     fontSize: width * 0.023,

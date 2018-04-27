@@ -2,20 +2,16 @@ import React from 'react'
 import { StyleSheet, View, Dimensions, Image } from 'react-native'
 
 import Container from '../Container'
+import { cards } from '../../images'
 
-const graphic = require('../../assets/images/cards.png')
-const { width, height } = Dimensions.get('window')
-const cardWidth = width * 0.5
-const cardHeight = cardWidth / 320 * 450
+const { width } = Dimensions.get('window')
 
 export default function Die(props) {
   const component = new React.Component()
   
   component.state = {
-    cardCoords: {
-      top: 0,
-      left: 0
-    }
+    suit: 0,
+    value: 0
   }
 
   const containerProps = {
@@ -23,24 +19,20 @@ export default function Die(props) {
     btnText: 'Shuffle',
     btnPress: () => {
       component.setState({
-        cardCoords: {
-          top:  -Math.abs(cardHeight * Math.floor((Math. random() *  4))),
-          left: -Math.abs(cardWidth * Math.floor((Math. random() * 13)))
-        }
+          suit:  Math.floor(Math. random() *  4),
+          value: Math.floor(Math. random() * 13)
       })
     }
   }
 
+
   component.render = () => (
     <Container {...containerProps} navigation={props.navigation}>
-      <View style={styles.wrapper}>
-        <Image 
-          style={[styles.card, component.state.cardCoords]} 
-          resizeMethod="resize"
-          removeClippedSubviews={true}
-          source={graphic}
-        />
-      </View>
+      <Image 
+        style={styles.card} 
+        onError={err => console.log('image error!!!!!!!!!')}
+        source={cards[component.state.suit][component.state.value]}
+      />
     </Container>
   )
 
@@ -48,19 +40,10 @@ export default function Die(props) {
 }
 
 const styles = new StyleSheet.create({
-  wrapper: {
-    position: 'relative',
-    backgroundColor: 'transparent',
-    width: cardWidth,
-    height: cardHeight,
+  card: {
+    width: width * 0.5,
+    height: (width * 0.5) / 320 * 450,
     marginLeft: 'auto',
     marginRight: 'auto',
-  },
-  card: {
-    position: 'absolute',
-    width: cardWidth * 13,
-    height: cardHeight * 4,
-    top: 0,
-    left: 0,
   }
 })

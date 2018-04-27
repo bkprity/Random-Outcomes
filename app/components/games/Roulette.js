@@ -2,8 +2,8 @@ import React from 'react'
 import { Dimensions, StyleSheet, Animated, Easing, Text, Image } from 'react-native'
 
 import Container from '../Container'
+import { roulette } from '../../images'
 
-const graphic = require('../../assets/images/roulette.png')
 const dim = Math.floor(Dimensions.get('window').width * 0.6)
 
 export default function Roulette(props) {
@@ -60,7 +60,7 @@ export default function Roulette(props) {
     return (
       <Container {...containerProps} navigation={props.navigation}>
         <Animated.View style={[styles.wrapper, {transform: [{rotate}]}]}>
-          <Image style={[styles.disc, {opacity: number > -1 ? 0.9 : 1}]} source={graphic} />
+          <Image style={[styles.disc, {opacity: number > -1 ? 0.9 : 1}]} source={roulette} />
           <Text style={[styles.number, {backgroundColor: color, opacity: number > -1 ? 1 : 0}]}>{number}</Text>
         </Animated.View>
       </Container>

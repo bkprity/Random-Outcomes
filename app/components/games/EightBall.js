@@ -2,9 +2,9 @@ import React from 'react'
 import { Dimensions, StyleSheet, Animated, Image } from 'react-native'
 
 import Container from '../Container'
+import { eightBall } from '../../images'
 
-const graphic = require('../../assets/images/eight-ball.png')
-const dim = Math.floor(Dimensions.get('window').width * 0.6)
+const { width } = Dimensions.get('window')
 
 export default function EightBall(props) {
   const component = new React.Component()
@@ -33,16 +33,14 @@ export default function EightBall(props) {
   }
 
   component.render = () => {
-    const { left } = component.state
+    const { answer, left } = component.state
 
     return (
       <Container {...containerProps} navigation={props.navigation}>
-        <Animated.View style={[styles.wrapper, {left}]}>
+        <Animated.View style={{left}}>
           <Image 
-            style={[styles.eightBall, {left: -Math.abs(dim * component.state.answer)}]}
-            resizeMethod="resize"
-            removeClippedSubviews={true}
-            source={graphic}
+            style={styles.eightBall}
+            source={eightBall[answer]}
           />
         </Animated.View>
       </Container>
@@ -53,18 +51,10 @@ export default function EightBall(props) {
 }
 
 const styles = new StyleSheet.create({
-  wrapper: {
-    position: 'relative',
-    backgroundColor: 'transparent',
-    width: dim,
-    height: dim,
+  eightBall: {
+    width: width * 0.6,
+    height: width * 0.6,
     marginLeft: 'auto',
     marginRight: 'auto',
-  },
-  eightBall: {
-    position: 'absolute',
-    width: dim * 12 ,
-    height: dim,
-    left: 0,
   }
 })

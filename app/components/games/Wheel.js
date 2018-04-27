@@ -2,8 +2,8 @@ import React from 'react'
 import { Dimensions, View, Animated, StyleSheet, Easing, Image } from 'react-native'
 
 import Container from '../Container'
+import { wheel } from '../../images'
 
-const graphic = require('../../assets/images/wheel.png')
 const { width } = Dimensions.get('window')
 const dim = Math.floor(width * 0.6)
 
@@ -46,7 +46,7 @@ export default function Wheel(props) {
       <View style={styles.triangle}/>
 
       <Animated.View style={[styles.wrapper, {transform: [{rotate}]}]}>
-        <Image style={styles.wheel} source={graphic} />
+        <Image style={styles.wheel} source={wheel} />
       </Animated.View>
     </Container>
   )

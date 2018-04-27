@@ -2,8 +2,8 @@ import React from 'react'
 import { Dimensions, StyleSheet, View, Text, Animated, Image } from 'react-native'
 
 import Container from '../Container'
+import { cup } from '../../images'
 
-const cupGraphic = require('../../assets/images/cup.png')
 const { width, height } = Dimensions.get('window')
 const dim = width * 0.3
 
@@ -56,9 +56,9 @@ export default function ThreeCups(props) {
     return (
       <Container {...containerProps} btnText={stage ? 'Reveal' : 'Shake'} navigation={props.navigation}>
         <Animated.View style={[styles.cups, {top, left}]}>
-          <Image style={styles.cup} source={cupGraphic} />
-          <Image style={styles.cup} source={cupGraphic} />
-          <Image style={styles.cup} source={cupGraphic} />
+          <Image style={styles.cup} source={cup} />
+          <Image style={styles.cup} source={cup} />
+          <Image style={styles.cup} source={cup} />
         </Animated.View>
         <View style={[styles.ball, {left: dim / 2 + dim * ballPos - width * 0.05}]} />
       </Container>

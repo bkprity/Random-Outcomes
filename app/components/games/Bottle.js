@@ -2,8 +2,8 @@ import React from 'react'
 import { Dimensions, StyleSheet, Animated, Easing, Image } from 'react-native'
 
 import Container from '../Container'
+import { bottle } from '../../images'
 
-const graphic = require('../../assets/images/bottle.png')
 const dim = Math.floor(Dimensions.get('window').width * 0.6)
 
 export default function Bottle(props) {
@@ -41,7 +41,7 @@ export default function Bottle(props) {
   component.render = () => (
     <Container {...containerProps} navigation={props.navigation}>
       <Animated.View style={[styles.wrapper, {transform: [{rotate}]}]}>
-        <Image style={styles.bottle} source={graphic} />
+        <Image style={styles.bottle} source={bottle} />
       </Animated.View>
     </Container>
   )
