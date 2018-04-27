@@ -1,12 +1,12 @@
 import React from 'react'
-import { Dimensions, StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native'
+import { Dimensions, StyleSheet, View, ScrollView, TouchableOpacity, Text, Image } from 'react-native'
 import { AdMobInterstitial } from 'react-native-admob'
 
 import Header from './Header'
 import BannerAd from './BannerAd'
 import { icons } from '../images'
 
-const { width } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 const adverts = require('../adverts.json')
 
 AdMobInterstitial.setAdUnitID(adverts.interstitial)
@@ -17,7 +17,7 @@ export default function Home(props) {
     <View>
       <Header title="Random outcomes" />
 
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container} scrollEnabled={true}>
         {items.map((item, i) => (
           <TouchableOpacity  
           key={`nav-item-${item.id}`}
@@ -36,7 +36,7 @@ export default function Home(props) {
           
           </TouchableOpacity >
         ))}
-      </View>
+      </ScrollView>
 
       <BannerAd />
     </View>
@@ -113,6 +113,7 @@ const styles = new StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     margin: width * 0.025,
+    paddingBottom: height * 0.3,
   },
   item: {
     backgroundColor: 'white',

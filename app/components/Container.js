@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, ScrollView, Text, Dimensions, TouchableOpacity } from 'react-native'
 
 import Header from './Header'
 import BannerAd from './BannerAd'
@@ -10,25 +10,28 @@ export default function Container(props) {
   return (
     <View>
       <Header title={props.title}/>
-    
-      <View style={styles.container}>
-        {props.children}
-      
-        {props.btnText
-          ? (
-            <TouchableOpacity style={styles.btn} onPress={props.btnPress}>
-              <Text style={styles.btnText}>{props.btnText}</Text>
-            </TouchableOpacity>
-          )
-          : (
-            <Text style={styles.bottomText}>{props.bottomText}</Text>
-          )
-        }
-      </View>
 
-      <Text style={styles.backBtn} onPress={() => props.navigation.navigate('Home')}>Back</Text>
+      <ScrollView contentContainerStyle={{paddingBottom: height * 0.3}}>
+        <View style={styles.container}>
+          {props.children}
+        
+          {props.btnText
+            ? (
+              <TouchableOpacity style={styles.btn} onPress={props.btnPress}>
+                <Text style={styles.btnText}>{props.btnText}</Text>
+              </TouchableOpacity>
+            )
+            : (
+              <Text style={styles.bottomText}>{props.bottomText}</Text>
+            )
+          }
+        </View>
 
-      <BannerAd />
+        <Text style={styles.backBtn} onPress={() => props.navigation.navigate('Home')}>Back</Text>
+
+        <BannerAd />
+
+      </ScrollView>
     </View>
   )
 }
