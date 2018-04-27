@@ -11,7 +11,7 @@ export default function BannerAd() {
         marginRight: 'auto',
         marginTop: 20,
       }}
-      adSize="fullBanner"
+      adSize="banner"
       adUnitID={adverts.banner}
       testDeviceId={AdMobBanner.simulatorId}
       onAdFailedToLoad={err => console.log(err)}
