@@ -1,4 +1,4 @@
-# Random Outcomes
+# Play Nirvana Games
 
 ![Branding](https://github.com/kniffen/Random-Outcomes/blob/master/branding/logo_feature.png)
 
